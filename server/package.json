@@ -2,9 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Alkemy Challenge Server",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/app.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback"
   },
   "author": "Agustin Queija",
   "license": "ISC",
