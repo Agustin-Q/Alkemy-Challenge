@@ -5,17 +5,19 @@ exports.up = async(knex) => {
     table.string('email',254).notNullable().unique();
     table.string('name').notNullable();
     table.string('password').notNullable();
+    table.timestamps(false, true);
 
   });
   await knex.schema.createTable('Record', (table) => {
     table.increments().notNullable();
-    table.float('amount');
-    table.string('type');
+    table.float('amount').notNullable();
+    table.enu('type', ['Credit' , 'Debit']).notNullable();
     table.string('category')
     table.string('description')
     table.timestamps(false, true);
     table.integer('Account_id').unsigned().references('id').inTable('Record')
   });
+
 };
 
 exports.down = async(knex) => {
