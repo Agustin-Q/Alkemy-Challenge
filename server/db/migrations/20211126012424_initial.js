@@ -15,7 +15,7 @@ exports.up = async(knex) => {
     table.string('category')
     table.string('description')
     table.timestamps(false, true);
-    table.integer('Account_id').unsigned().references('id').inTable('Record')
+    table.integer('Account_id').unsigned().references('id').inTable('Account').notNullable()
   });
 
 };
