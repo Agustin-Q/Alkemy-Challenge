@@ -4,11 +4,13 @@ const knex = require('knex')(knexConfig.development);
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
+const {checkTokenSetUser, checkAuth} = require('./middlewares/auth');
 
 // Middlewares 
 app.use(express.json({
   limit: "1mb"
 }));
+app.use(checkTokenSetUser);
 
 // routes
 app.get('/', (req, res) => {
@@ -52,7 +54,7 @@ app.post('/api/v0/login', (req, res) => {
     console.log(req.body.password);
     if (req.body.password == account.password){
       console.log('Password match responding with token!');
-      const token = jwt.sign({email: account.email}, process.env.JWT_KEY,{expiresIn: process.env.JWT_EXPIRES_IN});
+      const token = jwt.sign({email: account.email, account_id:  account.id}, process.env.JWT_KEY,{expiresIn: process.env.JWT_EXPIRES_IN});
       res.json({
         status: 'success',
         token: token
@@ -64,6 +66,24 @@ app.post('/api/v0/login', (req, res) => {
       })
     }
   }).catch((error) => {
+    console.log(error);
+    res.status(400).json({
+      status: 'Failed',
+      message: error.message,
+      error: error,
+    });
+  });
+});
+
+app.post('/api/v0/record', (req, res) => {
+  console.log(req.body);
+  let newRecord = req.body;
+  newRecord.Account_id = req.user.account_id;
+  knex('Record').insert(newRecord).then((record) => {
+    console.log(record);
+    res.json({status: 'success'});
+  }).catch((error) => {
+    console.log('Error inserting new account to DB');
     console.log(error);
     res.status(400).json({
       status: 'Failed',
