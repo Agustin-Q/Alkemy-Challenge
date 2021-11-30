@@ -12,6 +12,8 @@ function checkTokenSetUser(req, res, next) {
         if (error){
           console.log('Token verification error!')
           // console.log(error);
+          res.status(401);
+          throw new Error('Auth Failed');
         } else {
           req.user = user
           console.log(req.user);
@@ -39,7 +41,7 @@ function checkAuth(req, res, next) {
   } else {
     console.log('User NOT logged!');
     res.status(401);
-    throw new Error('Auth Failed')
+    throw new Error('Auth Failed');
   }
 }
 
