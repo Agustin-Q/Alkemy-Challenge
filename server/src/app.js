@@ -75,6 +75,9 @@ app.post('/api/v0/login', (req, res) => {
   });
 });
 
+/*
+Add record to DB
+*/
 app.post('/api/v0/record', (req, res) => {
   console.log(req.body);
   let newRecord = req.body;
@@ -90,6 +93,33 @@ app.post('/api/v0/record', (req, res) => {
       message: error.message,
       error: error,
     });
+  });
+});
+
+/*
+Get records
+Query parameters
+limit: limit number of records to return, default 5.
+offset: offset the records to return, default 0.
+*/
+
+app.get('/api/v0/record', (req, res) => {
+  knex
+  .select()
+  .table('Record')
+  .where('Account_id', req.user.account_id)
+  .limit(req.query.limit || 5)
+  .offset(req.query.offset || 0)
+  .orderBy('created_at', 'desc')
+  .then((records) => {
+    console.log(records);
+    res.json(records);
+  }).catch((error) => {
+    res.status(400).json({
+      status: 'Failed',
+      message: error.message,
+      error: error,
+    })
   });
 });
 
