@@ -26,6 +26,8 @@
     - [x] Set up route for getting records
       - [x] Getting last n records
       - [ ] Getting records between dates (optional)
+    - [ ] Set up route for modifying records
+    - [ ] Set up route for deleting records
     - [x] Set up route for getting balance
 
 ### Frontend
