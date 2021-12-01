@@ -124,6 +124,33 @@ app.get('/api/v0/record', (req, res) => {
 });
 
 /*
+modify record to DB
+*/
+app.put('/api/v0/record', (req, res) => {
+  console.log(req.body);
+  let newRecord = req.body;
+  newRecord.Account_id = req.user.account_id;
+  knex('Record')
+  .where({
+    id: req.body.id,
+    Account_id: req.user.account_id,
+  })
+  .update(newRecord)
+  .then((record) => {
+    console.log(record);
+    res.json({status: 'success'});
+  }).catch((error) => {
+    console.log('Error inserting new account to DB');
+    console.log(error);
+    res.status(400).json({
+      status: 'Failed',
+      message: error.message,
+      error: error,
+    });
+  });
+});
+
+/*
 Get Balance
 */
 app.get('/api/v0/balance', (req, res) => {
