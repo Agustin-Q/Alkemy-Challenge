@@ -13,6 +13,7 @@
   * Account_id -> notNullable
 
 ## To do:
+### Backend
 - [x] Set up DB
   - [x] Set up Migrations
   - [x] Set up Rollbacks
@@ -22,7 +23,10 @@
     - [x] Set up route for login (auth with jwt)
   - [ ] Record management:
     - [x] Set up route for adding records
-    - [ ] Set up route for getting records
-      - [ ] Getting last n records
-      - [ ] Getting records between dates
-    - [ ] Set up route for getting balance
+    - [x] Set up route for getting records
+      - [x] Getting last n records
+      - [ ] Getting records between dates (optional)
+    - [x] Set up route for getting balance
+
+### Frontend
+- [ ] Start
