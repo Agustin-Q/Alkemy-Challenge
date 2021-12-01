@@ -123,6 +123,35 @@ app.get('/api/v0/record', (req, res) => {
   });
 });
 
+/*
+Get Balance
+*/
+app.get('/api/v0/balance', (req, res) => {
+  //get all records for user
+  knex
+  .select()
+  .table('Record')
+  .where('Account_id', req.user.account_id)
+  .then((records) => {
+    let balance = 0;
+    records.forEach((record) => {
+      if(record.type == 'Debit'){
+        balance -= record.amount;
+      } else {
+        balance += record.amount;
+      }
+    });
+    res.json({balance: balance})
+  }).catch((error) => {
+    res.status(400).json({
+      status: 'Failed',
+      message: error.message,
+      error: error,
+    })
+  });
+});
+
+
 app.listen(process.env.PORT, () => {
   console.log(`Listening at http://localhost:${process.env.PORT}`)
 });
