@@ -17,7 +17,7 @@
 - [x] Set up DB
   - [x] Set up Migrations
   - [x] Set up Rollbacks
-- [ ] API:
+- [x] API:
   - [x] Account management:
     - [x] Set up route for creating account
     - [x] Set up route for login (auth with jwt)
@@ -26,8 +26,8 @@
     - [x] Set up route for getting records
       - [x] Getting last n records
       - [ ] Getting records between dates (optional)
-    - [ ] Set up route for modifying records
-    - [ ] Set up route for deleting records
+    - [x] Set up route for modifying records
+    - [x] Set up route for deleting records
     - [x] Set up route for getting balance
 
 ### Frontend
