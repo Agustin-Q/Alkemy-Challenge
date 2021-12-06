@@ -32,3 +32,13 @@
 
 ### Frontend
 - [ ] Start
+- [ ] Pages
+  - [ ] Signup
+  - [ ] Login
+  - [ ] Main
+- [ ] Components
+  - [ ] Menu Bar
+  - [ ] Record Card
+  - [ ] Add record button
+  - [ ] Login Form
+  - [ ] Signup form
