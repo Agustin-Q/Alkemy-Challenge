@@ -1,0 +1,78 @@
+:root {
+  --main-bg-color: #c8c8d4;
+  --secondary-bg-color: #70798C;
+  --main-text-color: #F5F1ED;
+  --color2: #DAD2BC;
+  --color3: #A99985;
+}
+h1, h2, h3, div{
+  text-align: center;
+  padding: 0.5rem;
+  margin: auto;
+  min-width: none;
+}
+html, body {
+  overflow-x: hidden;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  font-family: 'Noto Sans', sans-serif;
+}
+body{
+  position: relative;
+  margin: 0%;
+}
+
+.App, #root{
+  position: relative;
+  margin: 0%;
+  padding: 0%;
+}
+
+.MenuBar{
+  margin: 0%;
+  flex-direction: column;
+  background-color:  var(--secondary-bg-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.Content{
+  padding-top: 70px;
+}
+
+.Home{
+  display: flex;
+  flex-direction: column;
+}
+
+button{
+  margin: 1rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--secondary-bg-color);
+  color: var(--main-text-color);
+  border-style: none;
+}
+
+input, label, form{
+  padding:0.5rem;
+  display: block;
+}
+
+form{
+  margin: auto;
+}
+
+input{
+  width: calc(100% - 2rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 10rem;
+  border-style: none;
+}
+
+span {
+  display: block;
+  overflow: hidden;
+}
