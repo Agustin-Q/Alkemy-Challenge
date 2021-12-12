@@ -8,8 +8,6 @@ const defaultFromData = {
 
 function LogIn() {
   const [formData, setFromData] = useState(defaultFromData);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [messageType, setMessageType] = useState('');
   const [popup, setPopup] = useState('');
   const onFormChange = useCallback((event) => {
     setFromData({

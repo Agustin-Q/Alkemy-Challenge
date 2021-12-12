@@ -18,11 +18,34 @@ async function getBalance(){
   }
 }
 
+async function getRecords(){
+  try {
+    const url = 'http://localhost:5000/api/v0/record';
+    const response = await fetch(url, {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('Token')}`
+      },
+    });
+    const parsedResponse = await response.json();
+    console.log('get records', parsedResponse);
+    return parsedResponse;
+  } catch(error){
+    console.log(error);
+  }
+}
+
 function Dashboard() {
   const [balance, setBalance] = useState('');
+  const [records, setRecords] = useState([]);
   useEffect(() => {
     (async function(){
       setBalance((await getBalance()).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}));
+    })();
+    (async function(){
+      const newRecords = await getRecords();
+      setRecords(newRecords);
     })();
   }, []);
   return (
@@ -32,7 +55,11 @@ function Dashboard() {
       <h1>${balance}</h1>
       <button>Create Record</button>
       <div className="RecordArea">
-        <Record/>
+      {records.map((element) =>{
+        return(
+          <Record record={element} key={element.id}></Record>
+        )
+      })}
       </div>
     </div>
   );

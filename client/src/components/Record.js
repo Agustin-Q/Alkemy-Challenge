@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-
-function Record() {
+function Record(props) {
   
   return (
     <div className="Record">
       <div className="RecordInfo">
-        <p className="RecordType">Credit</p>
-        <p>Salary</p>
-        <p>December Salary</p>
+        <p className="RecordType">{props.record.type}</p>
+        <p>{props.record.category}</p>
+        <p>{props.record.description}</p>
       </div>
       <div className="RecordAmount">
-        <h1>$1.000,00</h1>
+        <h1>${props.record.amount.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</h1>
       </div>
       <div className="RecordButton">
       <button className="RecordButton">Edit</button>
