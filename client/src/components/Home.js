@@ -4,7 +4,7 @@ function Home() {
   return (
     <div className="Home">
       <h1>📈 Personal Finance App 📈</h1>
-      <button>Log In</button>
+      <Link to="/Login"><button>Log In</button></Link>
       <Link to="/SignUp"><button>Sign Up</button></Link>
     </div>
   );
