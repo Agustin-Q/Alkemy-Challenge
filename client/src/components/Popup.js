@@ -2,13 +2,14 @@ import React, { useState, useCallback, useEffect } from 'react';
 
 function Popup(prop){
   const closePopup = useCallback(() => {
-    prop.setMessage('');
+    prop.setPopup({messageType: '', message: ''});
   });
-  if(prop.message !==""){
+  console.log(prop);
+  if(prop.popup.message !=="" && prop.popup.message){
     return (
-      <div className="Popup">
+      <div className={`Popup ${prop.popup.messageType}`}>
         <p className="Popup">
-          {prop.message}
+          {prop.popup.message}
         </p>
         <button className="Popup" onClick={closePopup}>X</button>
       </div>

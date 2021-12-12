@@ -10,7 +10,8 @@ const defaultFromData = {
 
 function SignUp() {
   const [formData, setFromData] = useState(defaultFromData);
-  const [errorMessage, setErrorMessage] = useState('');
+  //const [errorMessage, setErrorMessage] = useState('');
+  const [popup, setPopup] = useState('');
   const onFormChange = useCallback((event) => {
     setFromData({
       ...formData,
@@ -25,7 +26,7 @@ function SignUp() {
       delete formData.confirmPassword; //remove confirm password to send to api
     } else {
       // no hacer nada\
-      setErrorMessage('Passwords must match.');
+      setPopup({messageType: 'Error', message: 'Passwords must match.'});
       return;
     }
     //send data
@@ -43,16 +44,17 @@ function SignUp() {
       if (parsedResponse.status === 'Success'){
         setFromData(defaultFromData);
       } else {
-        setErrorMessage(parsedResponse.message);
+        setPopup({messageType: 'Error', message: parsedResponse.message});
       }
     } catch (error) {
-      setErrorMessage('🙁 Oops something went wrong...');
+      setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${error}`});
+
     }
   }, [formData]);
 
   return (
     <div className='SignUp'>
-      {errorMessage && <Popup message={errorMessage} setMessage={setErrorMessage}/>}
+      <Popup popup={popup} setPopup={setPopup}/>
       <h1>SignUp</h1>
       <form onSubmit={formSubmitted}>
        <label htmlFor="name">Name</label>

@@ -9,6 +9,8 @@ const defaultFromData = {
 function LogIn() {
   const [formData, setFromData] = useState(defaultFromData);
   const [errorMessage, setErrorMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
+  const [popup, setPopup] = useState('');
   const onFormChange = useCallback((event) => {
     setFromData({
       ...formData,
@@ -18,17 +20,9 @@ function LogIn() {
 
   const formSubmitted = useCallback(async (event) =>{
     event.preventDefault();
-    //verify confirmPass
-    if(formData.password === formData.confirmPassword){
-      delete formData.confirmPassword; //remove confirm password to send to api
-    } else {
-      // no hacer nada\
-      setErrorMessage('Passwords must match.');
-      return;
-    }
     //send data
     try {
-      const url = 'http://localhost:5000/api/v0/account';
+      const url = 'http://localhost:5000/api/v0/login';
       const response = await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
@@ -38,19 +32,26 @@ function LogIn() {
       });
 
       const parsedResponse = await response.json();
-      if (parsedResponse.status === 'Success'){
+      console.log(response.status);
+      if (response.status === 200){
+        //setMessageType('Success');
+        //setErrorMessage('Success-Message');
+        setPopup({messageType: 'Success', message: `Login Success, Token: ${parsedResponse.token}`});
         setFromData(defaultFromData);
+        localStorage.setItem('Token', parsedResponse.token);
       } else {
-        setErrorMessage(parsedResponse.message);
+        //setErrorMessage(parsedResponse.message);
+        setPopup({messageType: 'Error', message: parsedResponse.message});
       }
     } catch (error) {
-      setErrorMessage('🙁 Oops something went wrong...');
+      //setErrorMessage('🙁 Oops something went wrong...');
+      setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${error}`});
     }
   }, [formData]);
 
   return (
     <div className='SignUp'>
-      {errorMessage && <Popup message={errorMessage} setMessage={setErrorMessage}/>}
+      <Popup popup={popup} setPopup={setPopup}/>
       <h1>Log In</h1>
       <form onSubmit={formSubmitted}>
        <label htmlFor="email">e-mail</label>
