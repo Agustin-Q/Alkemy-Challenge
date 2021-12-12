@@ -111,3 +111,29 @@ button.Popup{
   background-color: rgba(145, 145, 145, 0.2);
   color: rgb(5, 5, 5);
 }
+
+.Record{
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  border-bottom: white;
+  border-bottom-style: solid;
+}
+
+.RecordInfo{
+  text-align: left;
+  margin-left: 0%;
+}
+.RecordType{
+  font-weight: bold;
+}
+
+.RecordAmount{
+  text-align: right;
+  margin-right: 0%;
+}
+
+div.RecordButton{
+  display: flex;
+  flex-direction: column;
+}
