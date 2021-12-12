@@ -76,3 +76,27 @@ span {
   display: block;
   overflow: hidden;
 }
+
+div.Popup{
+  background-color: rgb(241, 95, 95);
+  border-radius: 0.75rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+p.Popup{
+  padding: auto;
+  margin:auto;
+  margin-left:0;
+  font-size: 0.75rem;
+}
+
+button.Popup{
+  padding: auto;
+  margin:auto;
+  font-size: 0.75rem;
+  margin-right: 0;
+  background-color: rgb(204, 81, 81);
+  color: rgb(241, 177, 177);
+}
