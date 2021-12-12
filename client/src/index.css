@@ -118,11 +118,13 @@ button.Popup{
   width: 80vw;
   border-bottom: white;
   border-bottom-style: solid;
+  overflow: hidden;
 }
 
 .RecordInfo{
   text-align: left;
   margin-left: 0%;
+  width:40%
 }
 .RecordType{
   font-weight: bold;
@@ -131,6 +133,10 @@ button.Popup{
 .RecordAmount{
   text-align: right;
   margin-right: 0%;
+  width:40%
+}
+.RecordAmount > h1{
+  text-align: right;
 }
 
 div.RecordButton{

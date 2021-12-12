@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import NewRecord from "./NewRecord";
 import Record from "./Record";
 
 async function getBalance(){
@@ -53,7 +54,9 @@ function Dashboard() {
       <h1>📊 Dashboard 📊</h1>
       <h1>Balance</h1>
       <h1>${balance}</h1>
-      <button>Create Record</button>
+      <h1>Create Record</h1>
+      <NewRecord></NewRecord>
+      <h1>Records</h1>
       <div className="RecordArea">
       {records.map((element) =>{
         return(
