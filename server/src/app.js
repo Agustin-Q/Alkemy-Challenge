@@ -63,8 +63,8 @@ app.post('/api/v0/login', (req, res) => {
       return;
     }
     if (req.body.password === account.password) { // check pass
-      console.log('Password match responding with token!');
-      const token = jwt.sign({ email: account.email, account_id: account.id }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES_IN });
+      console.log('Password match, responding with token!');
+      const token = jwt.sign({ email: account.email, account_id: account.id, name: account.name }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES_IN });
       res.json({
         status: 'Success',
         token: token
