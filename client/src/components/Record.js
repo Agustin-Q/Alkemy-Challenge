@@ -8,7 +8,7 @@ function Record(props) {
         <p>{props.record.description}</p>
       </div>
       <div className="RecordAmount">
-        <h1>${props.record.amount.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</h1>
+        <h1>{props.record.type === 'Debit' && '-'}${props.record.amount.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</h1>
       </div>
       <div className="RecordButton">
       <button className="RecordButton">Edit</button>
