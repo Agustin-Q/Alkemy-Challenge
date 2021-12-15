@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import NewRecord from "./NewRecord";
 import Record from "./Record";
+import jwt from "jsonwebtoken";
+
+function getUserName(){
+return jwt.decode(localStorage.getItem('Token')).name;
+}
 
 async function getBalance(){
   try {
@@ -37,25 +42,43 @@ async function getRecords(){
   }
 }
 
+function getRecordsAndBalance(setBalance,setRecords){
+  (async function(){
+    setBalance((await getBalance()).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}));
+  })();
+  (async function(){
+    const newRecords = await getRecords();
+    setRecords(newRecords);
+  })();
+}
+
 function Dashboard() {
   const [balance, setBalance] = useState('');
   const [records, setRecords] = useState([]);
+  const [newRecordHidden, setNewRecordHidden] = useState(true);
+
   useEffect(() => {
-    (async function(){
-      setBalance((await getBalance()).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}));
-    })();
-    (async function(){
-      const newRecords = await getRecords();
-      setRecords(newRecords);
-    })();
+    getRecordsAndBalance(setBalance,setRecords);
   }, []);
+
+  const onNewRecord = useCallback((algo) => {
+    console.log('new Record Callback')
+    getRecordsAndBalance(setBalance,setRecords);
+    setNewRecordHidden(true);
+  });
+
+  const onCreateNewRecord = useCallback((algo) => {
+    setNewRecordHidden(false);
+  });
+
   return (
     <div className="Home">
       <h1>📊 Dashboard 📊</h1>
+      <h1>{getUserName()}</h1>
       <h1>Balance</h1>
       <h1>${balance}</h1>
-      <h1>Create Record</h1>
-      <NewRecord></NewRecord>
+      <button onClick={onCreateNewRecord}>Create Record</button>
+      <NewRecord hidden={newRecordHidden} onNewRecord={onNewRecord}></NewRecord>
       <h1>Records</h1>
       <div className="RecordArea">
       {records.map((element) =>{
