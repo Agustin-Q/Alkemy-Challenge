@@ -72,7 +72,7 @@ function Dashboard() {
   });
 
   return (
-    <div className="Home">
+    <div className="Dashboard">
       <h1>📊 Dashboard 📊</h1>
       <h1>{getUserName()}</h1>
       <h1>Balance</h1>
@@ -87,6 +87,7 @@ function Dashboard() {
         )
       })}
       </div>
+      <div><button className="DownArrowButton"></button></div>
     </div>
   );
 }

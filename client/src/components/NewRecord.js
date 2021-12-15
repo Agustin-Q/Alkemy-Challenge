@@ -57,26 +57,35 @@ function NewRecord(props) {
     setFormData(defaultFormData);
     props.onNewRecord(); // send callback to parent component, dashboard
   },[formData]);
+
+  const onCloseButton = useCallback(() => {
+    setFormData(defaultFormData);
+    props.onNewRecord();
+  });
+
   if(props.hidden){
     return '';
   } else {
   return (
+    <div className="NoPadding">
+      <div className="NewRecordGrayArea"></div>
       <div className="NewRecord">
-        <form onSubmit={onFormSubmit}>
-        <label htmlFor="type">Type</label>
-        <select id="type" name="type" value={formData.type} onChange={onFormChange}>
-          <option value="Credit">Credit</option>
-          <option value="Debit">Debit</option>
-        </select>
-        <label htmlFor="amount" required>Amount</label>
-        <input type="text" id="amount" name="amount" value={formData.amount} onChange={onFormChange} required></input>
-        <label htmlFor="category">Category</label>
-        <input type="text" id="category" name="category" value={formData.category} onChange={onFormChange}></input>
-        <label htmlFor="description">Description</label>
-        <input type="text" id="description" name="description" value={formData.description} onChange={onFormChange}></input>
-        <button>Add</button>
-        </form>
-      </div>  
+          <form onSubmit={onFormSubmit}>
+          <label htmlFor="type">Type</label>
+          <select id="type" name="type" value={formData.type} onChange={onFormChange}>
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+          </select>
+          <label htmlFor="amount" required>Amount</label>
+          <input type="number" id="amount" name="amount" value={formData.amount} onChange={onFormChange} required></input>
+          <label htmlFor="category">Category</label>
+          <input type="text" id="category" name="category" value={formData.category} onChange={onFormChange}></input>
+          <label htmlFor="description">Description</label>
+          <input type="text" id="description" name="description" value={formData.description} onChange={onFormChange}></input>
+          <button type="submit">Add</button><button type="button" onClick={onCloseButton}>Close</button>
+          </form>
+      </div> 
+      </div> 
   );
   }
 }

@@ -52,7 +52,11 @@ button{
   border-radius: 0.5rem;
   background-color: var(--secondary-bg-color);
   color: var(--main-text-color);
-  border-style: none;
+  border-style: solid;
+  border-color: #606d88;
+}
+button:hover{
+  background-color: #3a4661;
 }
 
 input, label, form{
@@ -142,4 +146,44 @@ button.Popup{
 div.RecordButton{
   display: flex;
   flex-direction: column;
+}
+
+.NewRecord{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--secondary-bg-color);
+  border-radius: 2rem;
+}
+
+.NewRecordGrayArea{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  background-color: rgb(255, 255, 255);
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+
+.NoPadding{
+  padding: 0%;
+}
+
+.DownArrowButton{
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  background: none;
+  border-width: 0.5rem;
+  border-top-style: none;
+  border-right-style: none;
+  transform: scaleY(0.5) rotate(-45deg);
+}
+
+.DownArrowButton:hover{
+ border-width: 0.75rem;
+ background: none;
 }
