@@ -61,14 +61,18 @@ function Dashboard() {
     getRecordsAndBalance(setBalance,setRecords);
   }, []);
 
-  const onNewRecord = useCallback((algo) => {
+  const onNewRecord = useCallback(() => {
     console.log('new Record Callback')
     getRecordsAndBalance(setBalance,setRecords);
     setNewRecordHidden(true);
   });
 
-  const onCreateNewRecord = useCallback((algo) => {
+  const onCreateNewRecord = useCallback(() => {
     setNewRecordHidden(false);
+  });
+
+  const onDeleteRecord = useCallback(()=> {
+    getRecordsAndBalance(setBalance,setRecords);
   });
 
   return (
@@ -83,7 +87,7 @@ function Dashboard() {
       <div className="RecordArea">
       {records.map((element) =>{
         return(
-          <Record record={element} key={element.id}></Record>
+          <Record record={element} key={element.id} onDeleteRecord={onDeleteRecord}></Record>
         )
       })}
       </div>

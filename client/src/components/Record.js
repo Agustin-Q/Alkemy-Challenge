@@ -29,6 +29,7 @@ function Record(props) {
 
   const onClickDelete = useCallback(async() => {   
     await deleteRecord(props.record.id);
+    props.onDeleteRecord();
   },[props.record.id]);
   
   return (
