@@ -6,6 +6,24 @@ const defaultFromData = {
   password: '',
 };
 
+async function logIn(account){
+  try {
+    const url = 'http://localhost:5000/api/v0/login';
+    const response = await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(account) // body data type must match "Content-Type" header
+    });
+    const parsedResponse = await response.json();
+    return parsedResponse;
+    
+  } catch (error) {
+    throw error;
+  }
+}
+
 function LogIn() {
   const [formData, setFromData] = useState(defaultFromData);
   const [popup, setPopup] = useState('');
@@ -19,30 +37,16 @@ function LogIn() {
   const formSubmitted = useCallback(async (event) =>{
     event.preventDefault();
     //send data
-    try {
-      const url = 'http://localhost:5000/api/v0/login';
-      const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData) // body data type must match "Content-Type" header
-      });
-
-      const parsedResponse = await response.json();
-      console.log(response.status);
-      if (response.status === 200){
-        //setMessageType('Success');
-        //setErrorMessage('Success-Message');
-        setPopup({messageType: 'Success', message: `Login Success, Token: ${parsedResponse.token}`});
-        setFromData(defaultFromData);
-        localStorage.setItem('Token', parsedResponse.token);
+    try{
+    const res = await logIn(formData);
+      if (res.status === 'Success'){
+      setPopup({messageType: 'Success', message: `Login Success, Token: ${res.token}`});
+      setFromData(defaultFromData);
+      localStorage.setItem('Token', res.token);
       } else {
-        //setErrorMessage(parsedResponse.message);
-        setPopup({messageType: 'Error', message: parsedResponse.message});
+        setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${res.message}`});
       }
-    } catch (error) {
-      //setErrorMessage('🙁 Oops something went wrong...');
+    }catch (error){
       setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${error}`});
     }
   }, [formData]);
