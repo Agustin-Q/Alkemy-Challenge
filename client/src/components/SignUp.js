@@ -8,6 +8,29 @@ const defaultFromData = {
   confirmPassword: '',
 };
 
+async function signUp(account){
+  try {
+    const url = 'http://localhost:5000/api/v0/account';
+    const response = await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(account) // body data type must match "Content-Type" header
+    });
+
+    const parsedResponse = await response.json();
+    if (parsedResponse.status === 'Success'){
+      return parsedResponse;
+    } else {
+      return parsedResponse;
+    }
+  } catch (error) {
+    //setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${error}`});
+    throw error;
+  }
+}
+
 function SignUp() {
   const [formData, setFromData] = useState(defaultFromData);
   //const [errorMessage, setErrorMessage] = useState('');
@@ -31,25 +54,17 @@ function SignUp() {
     }
     //send data
     try {
-      const url = 'http://localhost:5000/api/v0/account';
-      const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData) // body data type must match "Content-Type" header
-      });
-
-      const parsedResponse = await response.json();
-      if (parsedResponse.status === 'Success'){
+      const res = await signUp(formData);
+      if (res.status === 'Success'){
         setFromData(defaultFromData);
+        setPopup({messageType: 'Success', message: `Account created successfully 😊`});
       } else {
-        setPopup({messageType: 'Error', message: parsedResponse.message});
+        setPopup({messageType: 'Error', message: res.message});
       }
-    } catch (error) {
+    } catch (error){
       setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${error}`});
-
     }
+
   }, [formData]);
 
   return (
