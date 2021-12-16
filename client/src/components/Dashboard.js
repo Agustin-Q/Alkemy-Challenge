@@ -71,7 +71,7 @@ function Dashboard() {
     setNewRecordHidden(false);
   });
 
-  const onDeleteRecord = useCallback(()=> {
+  const updateDashboard = useCallback(()=> {
     getRecordsAndBalance(setBalance,setRecords);
   });
 
@@ -87,7 +87,7 @@ function Dashboard() {
       <div className="RecordArea">
       {records.map((element) =>{
         return(
-          <Record record={element} key={element.id} onDeleteRecord={onDeleteRecord}></Record>
+          <Record record={element} key={element.id} onDeleteRecord={updateDashboard}></Record>
         )
       })}
       </div>

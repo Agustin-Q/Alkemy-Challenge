@@ -7,10 +7,12 @@ const defaultFormData = {
   type: 'Debit'};
 
 async function sendNewRecord(newRecord){
+  let method = 'POST';
+  if(newRecord.id) method = 'Put';
   try {
     const url = 'http://localhost:5000/api/v0/record';
     const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      method: method, // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('Token')}`
@@ -21,21 +23,15 @@ async function sendNewRecord(newRecord){
     const parsedResponse = await response.json();
     console.log(response.status);
     if (response.status === 200){
-      //setMessageType('Success');
-      //setErrorMessage('Success-Message');
-      //setPopup({messageType: 'Success', message: `Login Success, Token: ${parsedResponse.token}`});
-      console.log(parsedResponse);
+      console.log('New record created.', parsedResponse);
     } else {
-      //setErrorMessage(parsedResponse.message);
-      //setPopup({messageType: 'Error', message: parsedResponse.message});
+      console.log('Bad Response in New Record', parsedResponse);
     }
   } catch (error) {
-    //setErrorMessage('🙁 Oops something went wrong...');
-    //setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${error}`});
+    console.error(error);
   }
 }
 function NewRecord(props) {
-
   const [formData, setFormData] = useState(defaultFormData);
 
   const onFormChange = useCallback((event) => {
@@ -60,8 +56,19 @@ function NewRecord(props) {
 
   const onCloseButton = useCallback(() => {
     setFormData(defaultFormData);
-    props.onNewRecord();
+    if(props.onNewRecord) props.onNewRecord();
   });
+
+  useEffect(() => {
+    if(props.record){
+      let record = props.record;
+      for (let element in record){
+        if(!record[element]) record[element] = ''; // if element is null/undefined replace with ''
+      }
+      setFormData(record);
+    }
+  },[props.record, props.hidden]);
+
 
   if(props.hidden){
     return '';

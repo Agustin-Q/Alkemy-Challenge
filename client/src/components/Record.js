@@ -1,4 +1,5 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import NewRecord from "./NewRecord";
 
 async function deleteRecord(id){
   console.log(`Delete! Record with id ${id}`);
@@ -26,14 +27,25 @@ async function deleteRecord(id){
 }
 
 function Record(props) {
-
+  const [editRecordHidden, setEditRecordHidden] = useState(true);
   const onClickDelete = useCallback(async() => {   
     await deleteRecord(props.record.id);
     props.onDeleteRecord();
   },[props.record.id]);
+
+  const onClickEdit = useCallback(() => {
+    console.log('edit');
+    setEditRecordHidden(false);
+  });
+
+  const onNewRecord = useCallback(() => {
+    setEditRecordHidden(true);
+    props.onDeleteRecord();
+  });
   
   return (
     <div className="Record">
+      <NewRecord hidden={editRecordHidden} onNewRecord={onNewRecord} record={props.record} type={'edit'}></NewRecord>
       <div className="RecordInfo">
         <p className="RecordType">{props.record.type}</p>
         <p>{props.record.category}</p>
@@ -43,7 +55,7 @@ function Record(props) {
         <h1>{props.record.type === 'Debit' && '-'}${props.record.amount.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</h1>
       </div>
       <div className="RecordButton">
-      <button className="RecordButton">Edit</button>
+      <button className="RecordButton" onClick={onClickEdit}>Edit</button>
       <button className="RecordButton" onClick={onClickDelete}>Del</button>
       </div>
     </div>  
