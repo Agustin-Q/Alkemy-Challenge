@@ -156,14 +156,14 @@ div.RecordButton{
   background-color: var(--secondary-bg-color);
   border-radius: 2rem;
   overflow: hidden;
-  height: 350px;
+  max-height: 500px;
   animation-name: expand;
   animation-duration: 1s;
 }
 
 @keyframes expand {
-  from {height: 0px;}
-  to {height: 350px;}
+  from {max-height: 0px;}
+  to {max-height: 500px;}
 }
 .NewRecordGrayArea{
   width: 100%;
