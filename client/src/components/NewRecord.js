@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { sendNewRecord } from "../services/APICommunication";
 
 const defaultFormData = {
   amount: '',
@@ -6,31 +7,6 @@ const defaultFormData = {
   description: '',
   type: 'Debit'};
 
-async function sendNewRecord(newRecord){
-  let method = 'POST';
-  if(newRecord.id) method = 'Put';
-  try {
-    const url = 'http://localhost:5000/api/v0/record';
-    const response = await fetch(url, {
-      method: method, // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('Token')}`
-      },
-      body: JSON.stringify(newRecord) // body data type must match "Content-Type" header
-    });
-
-    const parsedResponse = await response.json();
-    console.log(response.status);
-    if (response.status === 200){
-      console.log('New record created.', parsedResponse);
-    } else {
-      console.log('Bad Response in New Record', parsedResponse);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
 function NewRecord(props) {
   const [formData, setFormData] = useState(defaultFormData);
 

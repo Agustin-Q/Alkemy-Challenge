@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import Popup from './Popup';
+import {signUp} from '../services/APICommunication';
 
 const defaultFromData = {
   name: '',
@@ -7,29 +8,6 @@ const defaultFromData = {
   password: '',
   confirmPassword: '',
 };
-
-async function signUp(account){
-  try {
-    const url = 'http://localhost:5000/api/v0/account';
-    const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(account) // body data type must match "Content-Type" header
-    });
-
-    const parsedResponse = await response.json();
-    if (parsedResponse.status === 'Success'){
-      return parsedResponse;
-    } else {
-      return parsedResponse;
-    }
-  } catch (error) {
-    //setPopup({messageType: 'Error', message: `🙁 Oops something went wrong... ${error}`});
-    throw error;
-  }
-}
 
 function SignUp() {
   const [formData, setFromData] = useState(defaultFromData);

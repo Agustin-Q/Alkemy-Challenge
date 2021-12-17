@@ -1,28 +1,11 @@
 import React, { useState, useCallback } from 'react';
+import {logIn} from '../services/APICommunication';
 import Popup from './Popup';
 
 const defaultFromData = {
   email: '',
   password: '',
 };
-
-async function logIn(account){
-  try {
-    const url = 'http://localhost:5000/api/v0/login';
-    const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(account) // body data type must match "Content-Type" header
-    });
-    const parsedResponse = await response.json();
-    return parsedResponse;
-    
-  } catch (error) {
-    throw error;
-  }
-}
 
 function LogIn() {
   const [formData, setFromData] = useState(defaultFromData);

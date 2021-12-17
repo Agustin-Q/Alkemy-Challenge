@@ -2,44 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import NewRecord from "./NewRecord";
 import Record from "./Record";
 import jwt from "jsonwebtoken";
+import { getBalance, getRecords } from "../services/APICommunication";
 
 function getUserName(){
 return jwt.decode(localStorage.getItem('Token')).name;
-}
-
-async function getBalance(){
-  try {
-    const url = 'http://localhost:5000/api/v0/balance';
-    const response = await fetch(url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('Token')}`
-      },
-    });
-    const parsedResponse = await response.json();
-    return parsedResponse.balance;
-  } catch(error){
-    console.log(error);
-  }
-}
-
-async function getRecords(){
-  try {
-    const url = 'http://localhost:5000/api/v0/record';
-    const response = await fetch(url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('Token')}`
-      },
-    });
-    const parsedResponse = await response.json();
-    console.log('get records', parsedResponse);
-    return parsedResponse;
-  } catch(error){
-    console.log(error);
-  }
 }
 
 function getRecordsAndBalance(setBalance,setRecords){
