@@ -7,17 +7,16 @@ function Record(props) {
   const onClickDelete = useCallback(async() => {   
     await deleteRecord(props.record.id);
     props.onDeleteRecord();
-  },[props.record.id]);
+  },[props]);
 
   const onClickEdit = useCallback(() => {
-    console.log('edit');
     setEditRecordHidden(false);
-  });
+  },[]);
 
   const onNewRecord = useCallback(() => {
     setEditRecordHidden(true);
     props.onDeleteRecord();
-  });
+  },[props]);
   
   return (
     <div className="Record">

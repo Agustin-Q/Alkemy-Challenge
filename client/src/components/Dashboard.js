@@ -31,15 +31,15 @@ function Dashboard() {
     console.log('new Record Callback')
     getRecordsAndBalance(setBalance,setRecords);
     setNewRecordHidden(true);
-  });
+  },[]);
 
   const onCreateNewRecord = useCallback(() => {
     setNewRecordHidden(false);
-  });
+  },[]);
 
   const updateDashboard = useCallback(()=> {
     getRecordsAndBalance(setBalance,setRecords);
-  });
+  },[]);
 
   return (
     <div className="Dashboard">

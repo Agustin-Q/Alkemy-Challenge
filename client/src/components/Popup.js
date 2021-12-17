@@ -3,7 +3,7 @@ import React, {useCallback} from 'react';
 function Popup(prop){
   const closePopup = useCallback(() => {
     prop.setPopup({messageType: '', message: ''});
-  });
+  },[prop]);
   console.log(prop);
   if(prop.popup.message !=="" && prop.popup.message){
     return (

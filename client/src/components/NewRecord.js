@@ -28,12 +28,12 @@ function NewRecord(props) {
     await sendNewRecord(newRecord);
     setFormData(defaultFormData);
     props.onNewRecord(); // send callback to parent component, dashboard
-  },[formData]);
+  },[formData, props]);
 
   const onCloseButton = useCallback(() => {
     setFormData(defaultFormData);
     if(props.onNewRecord) props.onNewRecord();
-  });
+  },[props]);
 
   useEffect(() => {
     if(props.record){
