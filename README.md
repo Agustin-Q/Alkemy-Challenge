@@ -21,6 +21,7 @@
   - [x] Account management:
     - [x] Set up route for creating account
     - [x] Set up route for login (auth with jwt)
+    - [ ] Hash passwords in DB. 
   - [ ] Record management:
     - [x] Set up route for adding records
     - [x] Set up route for getting records
@@ -31,14 +32,22 @@
     - [x] Set up route for getting balance
 
 ### Frontend
-- [ ] Start
-- [ ] Pages
-  - [ ] Signup
-  - [ ] Login
-  - [ ] Main
-- [ ] Components
+- [x] Start
+- [x] Pages
+  - [x] Home
+  - [x] SignUp
+  - [x] LogIn
+  - [x] Dashboard
+- [x] Components
   - [ ] Menu Bar
-  - [ ] Record Card
-  - [ ] Add record button
-  - [ ] Login Form
-  - [ ] Signup form
+  - [x] Record Card
+  - [x] NewRecord
+  - [x] Popup message
+- [x] API Communication
+  - [x] Log in
+  - [x] Sign up
+  - [x] Get last 5 records
+  - [x] Get Balance
+  - [x] Create new Record
+  - [x] Update Record
+  - [x] Delete Record
