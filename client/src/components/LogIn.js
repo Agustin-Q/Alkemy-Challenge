@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import {logIn} from '../services/APICommunication';
+import { logIn } from "../services/AccountAPI";
 import Popup from './Popup';
 
 const defaultFromData = {

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { deleteRecord } from "../services/APICommunication";
+import { deleteRecord } from "../services/RecordsAPI";
 import NewRecord from "./NewRecord";
 
 function Record(props) {

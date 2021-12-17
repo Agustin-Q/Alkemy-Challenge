@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import NewRecord from "./NewRecord";
 import Record from "./Record";
 import jwt from "jsonwebtoken";
-import { getBalance, getRecords } from "../services/APICommunication";
+import { getBalance, getRecords } from "../services/RecordsAPI";
 
 function getUserName(){
 return jwt.decode(localStorage.getItem('Token')).name;

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import Popup from './Popup';
-import {signUp} from '../services/APICommunication';
+import { signUp } from "../services/AccountAPI";
 
 const defaultFromData = {
   name: '',

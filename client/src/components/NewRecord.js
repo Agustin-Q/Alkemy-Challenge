@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { sendNewRecord } from "../services/APICommunication";
+import { sendNewRecord } from "../services/RecordsAPI";
 
 const defaultFormData = {
   amount: '',
