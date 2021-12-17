@@ -82,7 +82,7 @@ function getRecord (req, res){
     .select()
     .table('Record')
     .where('Account_id', req.user.account_id)
-    .limit(req.query.limit || 5)
+    .limit(req.query.limit || 10)
     .offset(req.query.offset || 0)
     .orderBy('created_at', 'desc')
     .then((records) => {
