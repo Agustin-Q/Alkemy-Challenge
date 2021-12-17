@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 function MenuBar() {
   return (
     <div className='MenuBar'>
-      <Link to="/"><h1>Menu Bar</h1></Link>
+      <Link to="/"><h1>Menu Bar - Click to go to home</h1></Link>
     </div>
   );
 }
