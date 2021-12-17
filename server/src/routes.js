@@ -1,0 +1,179 @@
+require('dotenv').config();
+const knexConfig = require('../knexfile.js');
+const knex = require('knex')(knexConfig.development);
+const jwt = require('jsonwebtoken');
+
+
+async function createAccount (req, res, next){
+  try {
+    console.log(req.body);
+    await knex('Account').insert(req.body);
+    return res.json({ status: 'Success' });
+  } catch (error) {
+    console.error('Error inserting new account to DB');
+    console.log(error);
+    res.status(400).json({
+      status: 'Failed',
+      message: error.message,
+      error: error,
+    });
+  }
+}
+
+function login(req, res) {
+  console.log('/api/v0/login');
+  console.log(req.body);
+  knex.select().from('Account').where({ email: req.body.email }).then((account) => {
+    console.log('return from db');
+    account = account[0]; // Get first and only record
+    console.log(account);
+    console.log(req.body.password);
+    if(!account){ // if account does not exists
+      console.log('Account does not exists');
+      res.status(401).json({
+        status: 'Failed',
+        message: 'Auth failed',
+      })
+      return;
+    }
+    if (req.body.password === account.password) { // check pass
+      console.log('Password match, responding with token!');
+      const token = jwt.sign({ email: account.email, account_id: account.id, name: account.name }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES_IN });
+      res.json({
+        status: 'Success',
+        token: token
+      });
+    } else {
+      res.status(401).json({
+        status: 'Failed',
+        message: 'Auth failed',
+      })
+    }
+  }).catch((error) => {
+    console.log(error);
+    res.status(400).json({
+      status: 'Failed',
+      message: error.message,
+      error: error,
+    });
+  });
+}
+
+function newRecord(req, res) {
+  console.log(req.body);
+  let newRecord = req.body;
+  newRecord.Account_id = req.user.account_id;
+  knex('Record').insert(newRecord).then((record) => {
+    console.log(record);
+    res.json({ status: 'Success' });
+  }).catch((error) => {
+    console.log('Error inserting new account to DB');
+    console.log(error);
+    res.status(400).json({
+      status: 'Failed',
+      message: error.message,
+      error: error,
+    });
+  });
+}
+
+function getRecord (req, res){
+  knex
+    .select()
+    .table('Record')
+    .where('Account_id', req.user.account_id)
+    .limit(req.query.limit || 5)
+    .offset(req.query.offset || 0)
+    .orderBy('created_at', 'desc')
+    .then((records) => {
+      console.log(records);
+      res.json(records);
+    }).catch((error) => {
+      res.status(400).json({
+        status: 'Failed',
+        message: error.message,
+        error: error,
+      })
+    });
+}
+
+function updateRecord(req, res) {
+  console.log(req.body);
+  let newRecord = req.body;
+  newRecord.Account_id = req.user.account_id;
+  knex('Record')
+    .where({
+      id: req.body.id,
+      Account_id: req.user.account_id,
+    })
+    .update(newRecord)
+    .then((record) => {
+      console.log(record);
+      res.json({ status: 'Success' });
+    }).catch((error) => {
+      console.log('Error inserting new account to DB');
+      console.log(error);
+      res.status(400).json({
+        status: 'Failed',
+        message: error.message,
+        error: error,
+      });
+    });
+}
+
+function deleteRecord (req, res) {
+  console.log(req.body);
+  knex('Record')
+    .where({
+      id: req.body.id,
+      Account_id: req.user.account_id,
+    })
+    .del()
+    .then((record) => {
+      console.log(record);
+      res.json({ status: 'Success' });
+    }).catch((error) => {
+      console.log('Error inserting new account to DB');
+      console.log(error);
+      res.status(400).json({
+        status: 'Failed',
+        message: error.message,
+        error: error,
+      });
+    });
+}
+
+function getBalance (req, res) {
+  //get all records for user
+  knex
+    .select()
+    .table('Record')
+    .where('Account_id', req.user.account_id)
+    .then((records) => {
+      let balance = 0;
+      records.forEach((record) => {
+        if (record.type == 'Debit') {
+          balance -= record.amount;
+        } else {
+          balance += record.amount;
+        }
+      });
+      res.json({ balance: balance })
+    }).catch((error) => {
+      res.status(400).json({
+        status: 'Failed',
+        message: error.message,
+        error: error,
+      })
+    });
+}
+
+module.exports = {
+  createAccount,
+  login,
+  newRecord,
+  getRecord,
+  updateRecord,
+  deleteRecord,
+  getBalance
+}
