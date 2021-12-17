@@ -11,18 +11,20 @@ app.use(cors());
 app.use(express.json({
   limit: "1mb"
 }));
+
+// setup static server
+app.use(express.static('../client/build'));
+app.get('/', function(req, res){
+  res.sendFile('../client/build/static' + '/index.html');
+});
 app.use(checkTokenSetUser);
 
+
 // routes
-app.get('/', (req, res) => {
-  res.send('Here we should send the front end :)')
-});
 
 /*
 Create new account
-
 */
-
 app.post('/api/v0/account', createAccount);
 
 /*
