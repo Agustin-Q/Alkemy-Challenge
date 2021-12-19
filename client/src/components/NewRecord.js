@@ -41,6 +41,7 @@ function NewRecord(props) {
       for (let element in record){
         if(!record[element]) record[element] = ''; // if element is null/undefined replace with ''
       }
+      if(record.date) record.date = record.date.split('T')[0];
       setFormData(record);
     }
   },[props.record, props.hidden]);

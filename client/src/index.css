@@ -165,6 +165,7 @@ div.RecordButton{
   max-height: 500px;
   animation-name: expand;
   animation-duration: 1s;
+  z-index: 10;
 }
 
 @keyframes expand {

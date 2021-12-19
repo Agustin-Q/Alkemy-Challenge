@@ -50,11 +50,11 @@ function Dashboard() {
       <NewRecord hidden={newRecordHidden} onNewRecord={onNewRecord}></NewRecord>
       <h1>Records</h1>
       <div className="RecordArea">
-      {records.map((element) =>{
-        return(
-          <Record record={element} key={element.id} onDeleteRecord={updateDashboard}></Record>
-        )
-      })}
+        {records.map((element) =>{
+          return(
+            <Record record={element} key={element.id} onDeleteRecord={updateDashboard}></Record>
+          )
+        })}
       </div>
       <div><button className="DownArrowButton"></button></div>
     </div>
