@@ -26,7 +26,7 @@ function SignUp() {
     if(formData.password === formData.confirmPassword){
       delete formData.confirmPassword; //remove confirm password to send to api
     } else {
-      // no hacer nada\
+      // Passwords does not match
       setPopup({messageType: 'Error', message: 'Passwords must match.'});
       return;
     }

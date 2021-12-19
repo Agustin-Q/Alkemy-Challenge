@@ -28,7 +28,6 @@ function Dashboard() {
   }, []);
 
   const onNewRecord = useCallback(() => {
-    console.log('new Record Callback')
     getRecordsAndBalance(setBalance,setRecords);
     setNewRecordHidden(true);
   },[]);

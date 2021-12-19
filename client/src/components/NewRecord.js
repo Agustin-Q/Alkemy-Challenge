@@ -22,11 +22,9 @@ function NewRecord(props) {
   const onFormSubmit = useCallback(async (event) => {
     event.preventDefault();
     let newRecord = formData;
-    console.log(newRecord);
     for (const property in newRecord){
       if(!newRecord[property]) delete newRecord[property]; //remove undefined/empty properties
     }
-    console.log(newRecord);
     await sendNewRecord(newRecord);
     setFormData(defaultFormData);
     props.onNewRecord(); // send callback to parent component, dashboard
