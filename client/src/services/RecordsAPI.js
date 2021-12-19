@@ -5,7 +5,7 @@
  */
 export async function getBalance(){
   try {
-    const url = 'http://localhost:5000/api/v0/balance';
+    const url = `${process.env.REACT_APP_API_BASE_URL}/balance`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -27,7 +27,7 @@ export async function getBalance(){
  */
 export async function getRecords(){
   try {
-    const url = 'http://localhost:5000/api/v0/record';
+    const url = `${process.env.REACT_APP_API_BASE_URL}/record`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -50,7 +50,7 @@ export async function getRecords(){
 export async function deleteRecord(id){
   console.log(`Delete! Record with id ${id}`);
   try {
-    const url = 'http://localhost:5000/api/v0/record';
+    const url = `${process.env.REACT_APP_API_BASE_URL}/record`;
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {
@@ -85,7 +85,7 @@ export async function sendNewRecord(newRecord){
   let method = 'POST';
   if(newRecord.id) method = 'Put';
   try {
-    const url = 'http://localhost:5000/api/v0/record';
+    const url = `${process.env.REACT_APP_API_BASE_URL}/record`;
     const response = await fetch(url, {
       method: method,
       headers: {
