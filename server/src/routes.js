@@ -100,7 +100,7 @@ function getRecord (req, res){
     .where('Account_id', req.user.account_id)
     .limit(req.query.limit || 10)
     .offset(req.query.offset || 0)
-    .orderBy('created_at', 'desc')
+    .orderBy('date', 'desc')
     .then((records) => {
       console.log(records);
       res.json(records);
