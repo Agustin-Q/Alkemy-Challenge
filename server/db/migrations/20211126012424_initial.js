@@ -14,6 +14,7 @@ exports.up = async(knex) => {
     table.enu('type', ['Credit' , 'Debit']).notNullable();
     table.string('category')
     table.string('description')
+    table.dateTime('date').notNullable(); 
     table.timestamps(false, true);
     table.integer('Account_id').unsigned().references('id').inTable('Account').notNullable()
   });
