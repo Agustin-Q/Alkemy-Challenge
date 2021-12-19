@@ -59,10 +59,26 @@ function login(req, res) {
   });
 }
 
+/**
+ * Adds record in database.
+ * Account id is taken form JWT token in local storage 'Token' item.
+ * @param {Object} newRecord- record object
+ * @param {number} newRecord.amount - amount for the record.
+ * @param {string} newRecord.type - Type of the record, allowed values ['Debit', 'Credit']
+ * @param {date} newRecord.date - [Optional] Date of the record, if not defined will use current date.
+ * @param {string} newRecord.category - [Optional] Category of the record
+ * @param {string} newRecord.description - [Optional] Description for the record 
+ * @returns {Object} Returns an array of records objects.
+ */
+
 function newRecord(req, res) {
   console.log(req.body);
   let newRecord = req.body;
+  // Get id form req.user.account_id which is set in the middleware form the JWT token.
   newRecord.Account_id = req.user.account_id;
+  // Check if date is present if not use current date
+  if(!newRecord.date) newRecord.date = new Date();
+  // Insert to DB
   knex('Record').insert(newRecord).then((record) => {
     console.log(record);
     res.json({ status: 'Success' });
