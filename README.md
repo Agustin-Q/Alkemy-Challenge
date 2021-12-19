@@ -16,6 +16,10 @@ En el codigo utilicé "Debit" y "Credit" para hacer referencia a "Egreso" e "Ing
 "Home" que esta en la raiz del url es de donde se puede navegar a las distintas paginas, el link a Dashboard esta oculto si no hay un token. Aca podria haber alguna presentacion de lo que hace la aplicacion.
 
 ---
+### Demo:
+
+![Demo](Demo.gif)
+---
 ### Algunas cosas que todavia pueden mejorase:
 
 Los mensajes de estilo "Popup" solo estan implementados en la pagina de "login" y "signup", extender la implementacion al resto de la aplicacion.
