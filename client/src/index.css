@@ -128,10 +128,16 @@ button.Popup{
 .RecordInfo{
   text-align: left;
   margin-left: 0%;
-  width:40%
+  width:40%;
+  font-size: 1rem;
+}
+
+.RecordInfo > p{
+  margin : 0.5em 0em;
 }
 .RecordType{
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .RecordAmount{

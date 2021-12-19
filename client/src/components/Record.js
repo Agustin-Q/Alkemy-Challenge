@@ -25,6 +25,7 @@ function Record(props) {
         <p className="RecordType">{props.record.type}</p>
         <p>{props.record.category}</p>
         <p>{props.record.description}</p>
+        <p>{props.record.date.split('T')[0]}</p>
       </div>
       <div className="RecordAmount">
         <h1>{props.record.type === 'Debit' && '-'}${props.record.amount.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</h1>

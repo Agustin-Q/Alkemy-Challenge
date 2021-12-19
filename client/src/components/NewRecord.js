@@ -5,7 +5,9 @@ const defaultFormData = {
   amount: '',
   category: '',
   description: '',
-  type: 'Debit'};
+  type: 'Debit',
+  date: new Date().toISOString().split('T')[0],
+};
 
 function NewRecord(props) {
   const [formData, setFormData] = useState(defaultFormData);
@@ -65,6 +67,8 @@ function NewRecord(props) {
           <input type="text" id="category" name="category" value={formData.category} onChange={onFormChange}></input>
           <label htmlFor="description">Description</label>
           <input type="text" id="description" name="description" value={formData.description} onChange={onFormChange}></input>
+          <label htmlFor="date">Date</label>
+          <input type="date" id="date" name="date" value={formData.date} onChange={onFormChange} required></input>
           <button type="submit">Add</button><button type="button" onClick={onCloseButton}>Close</button>
           </form>
       </div> 
