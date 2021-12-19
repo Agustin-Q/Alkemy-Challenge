@@ -23,7 +23,7 @@ function LogIn() {
     try{
     const res = await logIn(formData);
       if (res.status === 'Success'){
-      setPopup({messageType: 'Success', message: `Login Success, Token: ${res.token}`});
+      setPopup({messageType: 'Success', message: `Login Success`});
       setFromData(defaultFromData);
       localStorage.setItem('Token', res.token);
       } else {
