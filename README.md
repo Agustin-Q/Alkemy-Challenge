@@ -1,7 +1,7 @@
 # Alkemy-Challenge
 Este es la entrada mia para el Challenge de Alkemy.
 
-La consigna: [Challenge Full stack - JavaScript](Challenge Full stack - JavaScript.rev2.pdf)
+La consigna: ["Challenge Full stack - JavaScript](Challenge Full stack - JavaScript.rev2.pdf")
 
 ---
 ###  Notas / Aclaraciones:
