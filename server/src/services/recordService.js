@@ -63,6 +63,13 @@ function updateRecord(req, res) {
     })
     .update(newRecord)
     .then((record) => {
+      if(!record) {
+        // record does not exist or belong to user
+        res.status(401).json({
+          status: 'Failed',
+          message: 'Auth Failed',
+        });
+      }
       res.json({ status: 'Success' });
     }).catch((error) => {
       console.log('Error inserting new account to DB');
