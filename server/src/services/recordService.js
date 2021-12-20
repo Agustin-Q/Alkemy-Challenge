@@ -41,7 +41,7 @@ function getRecord (req, res){
     .where('Account_id', req.user.account_id)
     .limit(req.query.limit || 10)
     .offset(req.query.offset || 0)
-    .orderBy('date', 'desc')
+    .orderBy([{column: 'date', order: 'desc'},{column: 'created_at', order: 'desc'}])
     .then((records) => {
       res.json(records);
     }).catch((error) => {
