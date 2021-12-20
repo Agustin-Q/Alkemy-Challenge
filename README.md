@@ -13,7 +13,7 @@ En el código utilicé "Debit" y "Credit" para hacer referencia a "Egreso" e "In
 
 "Signup" es donde se puede registrar un nuevo usuario.
 
-"Home" es de donde se puede navegar a las distintas páginas. El link a Dashboard está oculto si no hay un token. Acá podría haber alguna presentación de lo que hace la aplicación.
+"Home" es de donde se puede navegar a las distintas páginas. El link a Dashboard está oculto si no hay un token. Acá podría se puede agregar la descripción o presentación de lo que hace la aplicación.
 
 ---
 ### Demo:
