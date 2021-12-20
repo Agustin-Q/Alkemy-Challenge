@@ -8,8 +8,10 @@ function checkTokenSetUser(req, res, next) {
       // verify token
       jwt.verify(token, process.env.JWT_KEY, (error, user) => {
         if (error){
-          res.status(401);
-          throw new Error('Auth Failed');
+          res.status(401).json({
+            status: 'Failed',
+            message: 'Auth Failed',
+          });
         } else {
           req.user = user
         }
@@ -25,14 +27,17 @@ function checkTokenSetUser(req, res, next) {
   }
 }
 
+//checks if user was set by checkTokenSetUser
 function checkAuth(req, res, next) {
   if (req.user){
     // req has user continue
     next();
   } else {
     //req does not have user 
-    res.status(401);
-    throw new Error('Auth Failed');
+    res.status(401).json({
+      status: 'Failed',
+      message: 'Auth Failed',
+    });
   }
 }
 
