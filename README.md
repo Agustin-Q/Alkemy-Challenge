@@ -20,7 +20,7 @@ En el código utilicé "Debit" y "Credit" para hacer referencia a "Egreso" e "In
 
 ![Demo](Demo.gif)
 ---
-### Algunas cosas que todavía pueden mejorase:
+### Algunas cosas que todavía pueden mejorar o agregar:
 
 Los mensajes de estilo "Popup" sólo están implementados en la página de "login" y "signup", se podría extender la implementacion al resto de la aplicacion.
 
@@ -30,7 +30,7 @@ Agregar redirects automáticos una vez que un usuario ingresó o tiene un token 
 
 Verificar y eliminar el JWT cuando este llegando al fin de su validez, actualmente el frontend va a hacer request con el token expirado y va a recibir un error de "Auth Failed" del backend.
 
-Hashear las contraseñas de los usuarios en la base de datos. Actualmente se almacenan como texto, esto es un riesgo de seguridad si la base de datos llegara a ser comprometida.
+Hash + salt las contraseñas de los usuarios en la base de datos. Actualmente se almacenan como texto, esto es un riesgo de seguridad si la base de datos llegara a ser comprometida.
 
 Agregar endpoints para consultar datos estadisticos como egresos por categoría, egresos diarios, mensuales, etc.
 
@@ -38,7 +38,11 @@ Agregar endpoint para recuperar contraseña.
 
 Mejorar el manejo de errores para que sea consistente dentro de toda la aplicación.
 
-Mejorar la documentación, algunas partes están documentadas extensivamente y otras no tanto.
+Mejorar la documentación, algunas partes están documentadas y otras no tanto.
+
+Validar el input antes de ingresarlo a la base de datos.
+
+Agregar testing automatico con una librería como Jest.
 
 ---
 ## DB structure
