@@ -1,5 +1,6 @@
 const {newRecord, getRecord, updateRecord, deleteRecord, getBalance } = require('./services/recordService.js');
 const {createAccount, login} = require('./services/accountService');
+const { checkAuth } = require('./middlewares/auth.js');
 
 function routes(app){
   /*
@@ -15,7 +16,7 @@ function routes(app){
   /*
   Add record to DB
   */
-  app.post('/api/v0/record', newRecord);
+  app.post('/api/v0/record', checkAuth, newRecord);
 
   /*
   Get records
@@ -24,22 +25,22 @@ function routes(app){
   offset: offset the records to return, default 0.
   */
 
-  app.get('/api/v0/record', getRecord);
+  app.get('/api/v0/record', checkAuth, getRecord);
 
   /*
   modify record to DB
   */
-  app.put('/api/v0/record', updateRecord);
+  app.put('/api/v0/record', checkAuth, updateRecord);
 
   /*
   Delete record to DB
   */
-  app.delete('/api/v0/record', deleteRecord);
+  app.delete('/api/v0/record', checkAuth, deleteRecord);
 
   /*
   Get Balance
   */
-  app.get('/api/v0/balance', getBalance);
+  app.get('/api/v0/balance', checkAuth, getBalance);
 
   return app;
 }
