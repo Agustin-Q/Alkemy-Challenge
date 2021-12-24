@@ -31,8 +31,12 @@ function Record(props) {
         <h1>{props.record.type === 'Debit' && '-'}${props.record.amount.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</h1>
       </div>
       <div className="RecordButton">
-      <button className="RecordButton" onClick={onClickEdit}>Edit</button>
-      <button className="RecordButton" onClick={onClickDelete}>Del</button>
+        <button className="RecordButton" onClick={onClickEdit}>
+          <span class="material-icons">edit</span>
+        </button>
+        <button className="RecordButton" onClick={onClickDelete}>
+          <span class="material-icons">delete_outline</span>
+        </button>
       </div>
     </div>  
   );

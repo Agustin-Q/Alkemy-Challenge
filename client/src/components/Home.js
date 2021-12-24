@@ -5,7 +5,7 @@ function Home() {
     <div className="Home">
       <h1>📈 Personal Finance App 📈</h1>
       <Link to="/Login"><button>Log In</button></Link>
-      <Link to="/SignUp"><button>Sign Up</button></Link>
+      <Link className="Link" to="/SignUp"><button>Sign Up</button></Link>
       {localStorage.getItem('Token') && <Link to="/Dashboard"><button>Dashboard</button></Link> }
     </div>
   );
