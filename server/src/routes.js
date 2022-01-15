@@ -1,8 +1,15 @@
 const {newRecord, getRecord, updateRecord, deleteRecord, getBalance } = require('./services/recordService.js');
 const {createAccount, login} = require('./services/accountService');
 const { checkAuth } = require('./middlewares/auth.js');
+const { response } = require('express');
 
 function routes(app){
+    /*
+  Check if server is running
+  */
+  app.get('/api/v0/status', (req, res) => {
+    res.json({status: "success"});
+  });
   /*
   Create new account
   */
