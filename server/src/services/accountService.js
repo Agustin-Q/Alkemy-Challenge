@@ -1,5 +1,5 @@
 const knexConfig = require('../../knexfile.js');
-const knex = require('knex')(knexConfig.development);
+const knex = require('knex')(knexConfig[process.env.NODE_ENV]);
 const jwt = require('jsonwebtoken');
 
 
