@@ -4,6 +4,8 @@ const app = express();
 const { checkTokenSetUser, checkAuth } = require('./middlewares/auth');
 const cors = require('cors');
 const routes = require('./routes.js');
+const knexfile = require('../knexfile');
+
 // Middlewares 
 app.use(cors());
 app.use(express.json({
@@ -21,5 +23,6 @@ app.get('/', function(req, res){
 routes(app);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Listening at Port: ${process.env.PORT}`)
+  console.log(`Listening at Port: ${process.env.PORT}`);
+  console.log(knexfile);
 });
