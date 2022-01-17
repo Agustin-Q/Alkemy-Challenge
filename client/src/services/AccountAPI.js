@@ -7,7 +7,8 @@
  */
 export async function logIn(account) {
   try {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/login`;
+    //const url = `${process.env.REACT_APP_API_BASE_URL}/login`;
+    const url = `https://perfiapp-api.herokuapp.com/api/v0/login`;
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -32,7 +33,8 @@ export async function logIn(account) {
 
 export async function signUp(account) {
   try {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/account`;
+    //const url = `${process.env.REACT_APP_API_BASE_URL}/account`;
+    const url = `https://perfiapp-api.herokuapp.com/api/v0/account`;
     const response = await fetch(url, {
       method: 'POST',
       headers: {
