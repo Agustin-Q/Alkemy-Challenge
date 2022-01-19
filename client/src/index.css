@@ -79,8 +79,18 @@ input, label, select, form{
 
 input{
   color: var(--third-text-color);
+  width: calc(100% - 2rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 10rem;
+  border-style: none;
 }
 
+input.secondary{
+  border-color: var(--secondary-bg-color);
+  border-style: solid;
+  color: var(--main-text-color)
+}
 select {
   width: 100%;
   text-align: center;
@@ -90,14 +100,6 @@ select {
 
 form{
   margin: auto;
-}
-
-input{
-  width: calc(100% - 2rem);
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 10rem;
-  border-style: none;
 }
 
 span {

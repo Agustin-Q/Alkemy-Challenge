@@ -40,9 +40,9 @@ function LogIn() {
       <h1>Log In</h1>
       <form onSubmit={formSubmitted}>
        <label htmlFor="email">e-mail</label>
-       <input type="email" id="email" name="email" value={formData.email} onChange={onFormChange} required></input>
+       <input type="email" id="email" name="email" className="secondary" value={formData.email} onChange={onFormChange} required></input>
        <label htmlFor="password">Password</label>
-       <input type="password" id="password" name="password" value={formData.password} onChange={onFormChange} required></input>
+       <input type="password" id="password" name="password" className="secondary" value={formData.password} onChange={onFormChange} required></input>
        <button>Log In</button>
      </form>
     </div>
