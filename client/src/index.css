@@ -49,6 +49,7 @@ body{
 }
 .Content{
   padding-top: 80px;
+  max-width: 50rem;
 }
 
 .Home{
@@ -147,7 +148,7 @@ button.Popup{
 .Record{
   display: flex;
   justify-content: space-between;
-  width: 80vw;
+  width: 80%;
   border-bottom: var(--main-text-color);
   border-bottom-style: solid;
   border-bottom-width: 1px;

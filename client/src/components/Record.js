@@ -32,10 +32,10 @@ function Record(props) {
       </div>
       <div className="RecordButton">
         <button className="RecordButton" onClick={onClickEdit}>
-          <span class="material-icons">edit</span>
+          <span className="material-icons">edit</span>
         </button>
         <button className="RecordButton" onClick={onClickDelete}>
-          <span class="material-icons">delete_outline</span>
+          <span className="material-icons">delete_outline</span>
         </button>
       </div>
     </div>  
